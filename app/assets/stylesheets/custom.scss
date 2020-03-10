@@ -1,0 +1,22 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  padding-top: 60px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+#logo {
+  color: white;
+  float: left;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 10px;
+  &:hover {
+    color: gray;
+    text-decoration: none;
+  }
+}
