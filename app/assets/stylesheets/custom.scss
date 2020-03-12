@@ -1,6 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+h1 {
+  text-align: center;
+}
+
 body {
   padding-top: 60px;
 }
@@ -19,4 +23,15 @@ body {
     color: gray;
     text-decoration: none;
   }
+}
+
+//debug
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
