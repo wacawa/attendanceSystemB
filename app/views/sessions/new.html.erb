@@ -11,8 +11,15 @@
       <%= f.label :password, "パスワード", class: "label-login" %>
       <%= f.password_field :password, class: "form-control" %>
       
-      <%= f.submit "Log in", class: "btn btn-block btn-primary btn-login" %>
+      <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+        <%= f.check_box :remember_me, id: "remember-me" %>
+        <span>ログイン情報を記憶する</span>
+      <% end %>
+      
+      <%= f.submit "ログイン", class: "btn btn-block btn-primary btn-login" %>
     <% end %>
-    アカウント作成は<%= link_to "こちら", new_user_path %>から
+    <p class="to-make-account">
+      アカウント作成は<%= link_to "こちら", new_user_path %>から
+    </p>
   </div>
 </div>
