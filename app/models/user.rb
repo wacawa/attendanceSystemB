@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :department, presence: true, length: { maximum: 10 }
   
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   def User.digest(string)
     cost = 

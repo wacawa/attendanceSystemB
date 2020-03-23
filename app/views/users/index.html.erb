@@ -1,15 +1,19 @@
 <% provide(:title, "ユーザー一覧") %>
 <h1>ユーザー一覧</h1>
 
-<div>
-  <table class="table table-condensed users-table">
-    <tr>
-      <th>氏名</th>
-    </tr>
+<div class="col-md-8 col-md-offset-2">
+  <%= will_paginate %>
+  <table class="table table-condensed table-hover users-table">
+    <thead>
+      <tr>
+        <th><%= User.human_attribute_name :name %></th>
+      </tr>
+    </thead>
     <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.name, user %></td>
       </tr>
     <% end %>
   </table>
+  <%= will_paginate %>
 </div>
