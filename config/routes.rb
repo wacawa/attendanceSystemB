@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  get 'edit_basic_info', to: 'users#edit_basic_info'
+  patch 'update_basic_info', to: 'users#update_basic_info'
+  
   resources :users
-
+  
 end
+
