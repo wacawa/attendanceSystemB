@@ -21,7 +21,7 @@
     </tr>
   </table>
   
-  <%= link_to "勤怠を編集", user_attendances_edit_path(@user), class: "btn btn-lg to-edit-attendances-btn" %>
+  <%= link_to "勤怠を編集", attendances_edit_user_path(@user), class: "btn btn-lg to-edit-attendances-btn" %>
   
   <table class="table table-bordered table-condensed table-striped" id="table-attendances">
     <thead>
@@ -69,9 +69,9 @@
               <% @sum_working_times = @sum_working_times.to_f + str_times.to_f %>
             <% end %>
           </td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= day.note %></td>
+          <td><%= day.work_overtime %></td>
+          <td><%= day.overtime_instructor %></td>
         </tr>
       <% end %>
       <tr>
