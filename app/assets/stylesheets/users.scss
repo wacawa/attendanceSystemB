@@ -26,3 +26,29 @@
   margin-top: 10px;
 }
 
+.prev-month-btn {
+  margin-right: 10px;
+}
+
+.next-month-btn {
+  margin-left: 10px;
+}
+
+.to-edit-attendances-btn, .attendance-btn {
+  background-color: rgb(220,220,220);
+  color: black;
+  outline-color: black;
+}
+
+#table-attendances {
+  th {
+    text-align: center;
+    &.with-rowspan {
+      vertical-align: middle;
+    }
+  }
+  td {
+    text-align: center;
+  }
+}
+
