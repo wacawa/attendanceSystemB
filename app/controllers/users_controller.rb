@@ -69,27 +69,4 @@ class UsersController < ApplicationController
 
   # before_action
   
-  def set_user
-    @user = User.find(params[:id])
-  end
-
-  def logged_in_user
-    if current_user.nil?
-      store_location
-      flash[:danger] = "ログインしてください。"
-      redirect_to login_url
-    end
-  end
-  
-  def correct_user
-    redirect_to root_url if !current_user?(@user) && !current_user.admin?
-  end
-
-  def admin_user
-    unless current_user.admin?
-      flash[:danger] = "アクセス権限がありません。" 
-      redirect_to root_url 
-    end
-  end
-
 end

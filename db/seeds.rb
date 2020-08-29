@@ -12,7 +12,7 @@ User.create!(name: "養性光明",
 49.times do |n|
   name = Faker::Name.name
   email = "sample-#{n+1}@email.com"
-  department = "窓際等"
+  department = "エンジニア"
   password = "password"
   User.create!(name: name,
                email: email,
