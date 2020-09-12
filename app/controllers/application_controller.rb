@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   
   $days_of_the_week = %w{日 月 火 水 木 金 土}
+  $week_text_color = %w{week-text-red # # # # # week-text-blue}
 
   
   # before_action

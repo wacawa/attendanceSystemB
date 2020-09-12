@@ -14,10 +14,11 @@ ja:
           work_time: 指定勤務時間
           created_at: 作成日
           updated_at: 更新日
+          search: ユーザー名検索
         attendance:
           worked_on: 日付
-          started_at: 出勤
-          finished_at: 退勤
+          started_at: 出勤時間
+          finished_at: 退勤時間
           note: 備考
           user: ユーザーID
         

@@ -1,16 +1,24 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :correct_user]
-  before_action :logged_in_user, only: [:index, :show, :edit, :update, :edit_basic_info, :update_basic_info]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :correct_user]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy, :edit_basic_info, :update_basic_info]
   before_action :correct_user, only: [:show, :edit, :update]
-  before_action :admin_user, only: [:index, :edit_basic_info, :update_basic_info]
+  before_action :admin_user, only: [:index, :destroy, :edit_basic_info, :update_basic_info]
   before_action :set_one_month, only: :show
   
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    if params[:search].nil?
+      @users = User.paginate(page: params[:page], per_page: 10)
+      @h1 = "ユーザー一覧"
+      @placeholder = "キーワードを入力..."
+    else
+      @users = User.paginate(page: params[:page], per_page: 10).search(params[:search])
+      @h1 = "検索結果"
+      @placeholder = params[:search]
+    end
   end
   
   def show
-    @sum_worked = @user.attendances.where.not(started_at: nil).count
+    @sum_worked = @attendances.where.not(started_at: nil, finished_at: nil).count
   end
 
   def new
@@ -38,6 +46,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @user.destroy
+    flash[:success] = "#{@user.name}のデータを削除しました。"
+    redirect_to users_url
   end
   
   def edit_basic_info

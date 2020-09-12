@@ -48,18 +48,18 @@
       <% @attendances.each do |day| %>
         <tr>
           <td><%= l(day.worked_on, format: :short) %></td>
-          <td class="week-<%= day.worked_on.wday %>">
+          <td class="<%= $week_text_color[day.worked_on.wday] %>">
             <%= $days_of_the_week[day.worked_on.wday] %>
           </td>
           <td><%= l(day.started_at, format: :hour) if day.started_at.present? %></td>
-          <td><%= minute_change(day.started_at.min) if day.started_at.present? %></td>
+          <td><%= l(day.started_at, format: :minute) if day.started_at.present? %></td>
           <td>
             <% if Date.current == day.worked_on && day.started_at.nil? %>
               <%= link_to "出勤", user_attendance_path(@user, day), method: :patch, class: "btn btn-block attendance-btn" %>
             <% end %>
           </td>
           <td><%= l(day.finished_at, format: :hour) if day.finished_at.present? %></td>
-          <td><%= minute_change(day.finished_at.min) if day.finished_at.present? %></td>
+          <td><%= l(day.finished_at, format: :minute) if day.finished_at.present? %></td>
           <td>
             <% if Date.current == day.worked_on && day.started_at.present? && day.finished_at.nil? %>
               <%= link_to "退勤", user_attendance_path(@user, day), method: :patch, class: "btn btn-block attendance-btn" %>
@@ -67,9 +67,7 @@
           </td>            
           <td>
             <% if day.started_at.present? && day.finished_at.present? %>
-              <% str_times = working_times(day.started_at, day.finished_at) %>
-              <% str_times_min = minute_change((str_times.to_f - str_times.to_i) * 60) / 60.0 %>
-              <%= str_times = str_times.to_i + str_times_min.to_f %>
+              <%= str_times = working_times(day.started_at, day.finished_at) %>
               <% @sum_working_times = @sum_working_times.to_f + str_times.to_f %>
             <% end %>
           </td>

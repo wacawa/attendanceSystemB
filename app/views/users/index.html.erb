@@ -1,8 +1,20 @@
 <% provide(:title, "ユーザー一覧") %>
-<h1>ユーザー一覧</h1>
+<h1><%= @h1 %></h1>
+
+<div class="col-md-offset-9">
+  <%= form_with(url: users_path(@search), method: :get, local: true) do |f| %>
+    <%= f.label "ユーザー名検索", class: "label-search" %>
+    <div class="form-inline">
+      <%= f.text_field :search, placeholder: @placeholder, class: "form-control" %> 
+      <%= f.submit "検索", name: nil, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
 
 <div class="col-md-8 col-md-offset-2">
+  
   <%= will_paginate %>
+
   <table class="table table-condensed table-hover users-table">
     <thead>
       <tr>
@@ -11,7 +23,11 @@
     </thead>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, user %></td>
+        <td>
+          <%= link_to user.name, user %>
+          <%= link_to "編集", edit_user_path(user), class: "btn btn-default edit-btn" %>
+          <%= link_to "削除", user, method: :delete, class: "btn btn-default btn-danger delete-btn" %>
+        </td>
       </tr>
     <% end %>
   </table>
